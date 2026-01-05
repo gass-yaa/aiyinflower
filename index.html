@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://rerofya.github.io/resources/flower.css">
+    <title>rerofya</title>
+    <style>
+        :root { 
+            --theme-color: #4fd1c5; 
+            --glow-color: rgba(79, 209, 197, 0.4); 
+        }
+
+        /* Container Tombol Kiri Atas - Tanpa Teks */
+        #musicContainer { 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            z-index: 10000; 
+            background: rgba(0, 0, 0, 0.3); 
+            padding: 5px; /* Padding sama sisi karena bulat */
+            border-radius: 50%; 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px); 
+            border: 1px solid rgba(79, 209, 197, 0.2); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+            transition: all 0.3s ease; 
+        }
+
+        /* Lingkaran Ikon Kecil & Diam */
+        #musicCircle { 
+            width: 32px; 
+            height: 32px; 
+            background: var(--theme-color); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #002b2b; 
+            box-shadow: 0 0 10px var(--glow-color); 
+        }
+
+        #iconContainer svg { 
+            width: 18px; 
+            height: 18px; 
+        }
+
+        /* Efek klik saja, tanpa animasi putar */
+        #musicContainer:active { transform: scale(0.90); }
+    </style>
+</head>
+<body>
+    <div id="flower-container"></div>
+    
+    <audio id="LaguBunga" loop><source src="LaguBunga.mp3" type="audio/mpeg"></audio>
+
+    <div id="musicContainer" onclick="toggleMusic()">
+        <div id="musicCircle">
+            <div id="iconContainer">
+                <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://rerofya.github.io/resources/flower.js"></script>
+    <script>
+        var lagu = document.getElementById("LaguBunga");
+        function toggleMusic() {
+            if (lagu.paused) {
+                lagu.play();
+                document.getElementById("playIcon").style.display = "none";
+                document.getElementById("pauseIcon").style.display = "block";
+            } else {
+                lagu.pause();
+                document.getElementById("playIcon").style.display = "block";
+                document.getElementById("pauseIcon").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
